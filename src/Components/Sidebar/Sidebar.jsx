@@ -1,8 +1,27 @@
 import React from "react"
-
+import { IoReorderThreeOtline } from "react-icons/io5"
 const Sidebar = () => {
     return (
-        <div>Sidebar</div>
+        <div>
+            <div>
+                <div>
+                    <img className='w-40' src="https://i.imgur.com/zqpwkLQ.png" alt="" />
+                </div>
+                <div className='mt-10'>
+                    {mainu.map((item) => <div className='flex item-center mb-5 cursor-pointer text-lg'>
+                        <p>{item.title}</p>
+                        {icon}
+
+                        </div>
+                    )} 
+                    
+                </div>
+            </div>
+            <div className='flex items-center cursor-pointer'>
+                <IoReorderThreeOtline />
+                <p className='ml-5'>More</p>
+            </div>
+        </div>
     )
 }
 
