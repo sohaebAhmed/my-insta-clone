@@ -1,5 +1,6 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
+import Profile from "../Profile/Profile"
 
 const Router = () => {
     return (
@@ -11,6 +12,7 @@ const Router = () => {
                 <div>
                     <Routes>
                         <Route path = '/' element={<HomePage/>}></Route>
+                        <Route path = '/username' element={<Profile/>}></Route>
                     </Routes>
                 </div>
             </div>
