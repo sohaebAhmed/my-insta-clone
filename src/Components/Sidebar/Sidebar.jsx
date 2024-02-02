@@ -18,7 +18,7 @@ const Sidebar = () => {
                         
                     </div>
                 </div>
-                <div className='flex items-center cursor-pointer'>
+                <div className='flex items-center cursor-pointer pb-10'>
                     <IoReorderThreeOtline />
                     <p className='ml-5'>More</p>
                 </div>
