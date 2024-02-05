@@ -2,7 +2,39 @@ import React from 'react'
 
 const ProfileUserDetails = () => {
     return (
-        <div>ProfileUserDetails</div>
+        <div classname='py-10'>
+            <div className='flex items-center'>                
+                <div className='width-[15%]'>
+                    <img className='w-32 h-32 rounded-full' src=''/>
+                </div>
+
+                <div className='w-full'>
+                    <div className='flex space-x-10 items-center'>
+                        <p>username</p>
+                        <button>Edit Profile</button>
+                        <TbCircleDashed></TbCircleDashed>
+                    </div>
+                    <div className='flex space-x-10'>
+                        <div>
+                            <span className='font-semibold mr-2'>10</span>
+                            <span>post</span>
+                        </div>
+                        <div>
+                            <span className='font-semibold mr-2'>5</span>
+                            <span>follower</span>
+                        </div>
+                        <div>
+                            <span className='font-semibold mr-2'>7</span>
+                            <span>following</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p className='font-semibold'>Full Name</p>
+                        <p className='font-thin text-sm'>Bio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

@@ -1,8 +1,18 @@
 import React from 'react'
+import ProfileUserDetails from '../../Components/ProfileComponents/ProfileUserDetails'
 
 const Profile = () => {
     return (
-        <div>Profile</div>
+        <div>
+            <div className='px-20'>
+                <div className=''>
+                    <ProfileUserDetails/>
+                </div>
+            </div>
+            <div>
+                <RequestUderPostPart></RequestUderPostPart>
+            </div>
+        </div>
     )
 }
 
