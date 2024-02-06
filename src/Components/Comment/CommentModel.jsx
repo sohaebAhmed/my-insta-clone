@@ -12,8 +12,18 @@ const ComentModel = ({onClose, isOpen}) => {
                         <div className='w-[45%] flex flex-col justify-center'>
                             <img className='max-h-full w-full' src="" alt="" />
                         </div>
-                        <div className='border w-[55%]'>
-                            
+                        <div className='w-[55%] pl-10'>
+                            <div className='flex justify-between items-center py-5'>
+                                <div className='flex items-center'>
+                                    <div>
+                                        <img className='w-9 h-9 rounded-full' src="" alt="" />
+                                    </div>
+                                    <div className='ml-2'>
+                                        <p>username</p>
+                                    </div>
+                            </div>
+                                <BsThreeDots/>
+                            </div>
                         </div>
                     </div>
                 </ModalBody>
