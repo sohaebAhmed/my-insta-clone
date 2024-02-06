@@ -45,6 +45,17 @@ const PostCard = () => {
                             {isSaved ? <BsBookMarkFill  className="text-xl hover:opacity-50 cursor-pointer"/> : <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer"/>}
                         </div>
                     </div>
+                    <div className='w-full py-2 px-5'>
+                        <p>10 likes</p>
+                        <p className='opcity-50 py-2 cursor-pointer'>view all 10 comments</p>
+                    </div>
+
+                    <div className='border border-t w-full'>
+                        <div className='flex w-full items-center px-5'>
+                            <BsEmojiSmile/>
+                            <input className="commentInput" type="text" placeholder='Add a comment...'/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
