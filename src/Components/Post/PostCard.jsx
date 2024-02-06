@@ -2,8 +2,17 @@ import React from 'react'
 
 const PostCard = () => {
     const [showDropDown, setShowDropDown] = useState(false)
+    const [isPostLiked, setIsPostLiked] = useState(false)
+    const [isSaved, setIsSaved] = useState(false)
+
+    const handleSavePost = () => {
+        setIsSaved(!isSaved)
+    }
+    const handlePostLike = () => {
+        setIsPostLiked(!isPostLiked)
+    }
     const handleClick = () => {
-        setShowDropDown(!setShowDropDown)
+        setShowDropDown(!showDropDown)
     }
     return (
         <div>
@@ -16,10 +25,24 @@ const PostCard = () => {
                             <p className='font-thin text-sm'>location</p>
                         </div>
                     </div>
-                    <div>
-                        <BsThreeDots/>
-                        <div onClick={handleClick} className='dropdown-content'>
-                            <p className='b--black text-white py-1 px-4 rounded-md cursor-pointer'>Delete</p>
+                    <div className='dropdown'>
+                        <BsThreeDots className='dots' onClick={handleClick}/>
+                        <div className='dropdown-content'>
+                            {showDropDown && <p className='b--black text-white py-1 px-4 rounded-md cursor-pointer'>Delete</p>}
+                        </div>
+                    </div>
+                    <div className='w-full'>
+                        <img className='w-full' src="" alt="" />
+                    </div>
+
+                    <div className='flex justify-between items-center w-full px-5 py-4'>
+                        <div className='flex items-center space-x-2'>
+                            {isPostLiked ? <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostLike} /> : <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} />}
+                            <FaRegComment className="text-xl hover:opacity-50 cursor-pointer"/>
+                            <RiSendPlaneLine className="text-xl hover:opacity-50 cursor-pointer"/>
+                        </div>
+                        <div className='cursor-pointer'>
+                            {isSaved ? <BsBookMarkFill  className="text-xl hover:opacity-50 cursor-pointer"/> : <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer"/>}
                         </div>
                     </div>
                 </div>
