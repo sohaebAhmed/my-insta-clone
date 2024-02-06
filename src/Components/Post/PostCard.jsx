@@ -1,4 +1,5 @@
 import React from 'react'
+import ComentModel from '../Comment/CommentModel'
 
 const PostCard = () => {
     const [showDropDown, setShowDropDown] = useState(false)
@@ -58,6 +59,8 @@ const PostCard = () => {
                     </div>
                 </div>
             </div>
+
+            <ComentModel/>
         </div>
     )
 }
