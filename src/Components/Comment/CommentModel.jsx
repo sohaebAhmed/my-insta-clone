@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentCard from './CommentCard'
 
-const ComentModel = ({onClose, isOpen}) => {
+const ComentModel = ({onClose, isOpen, isSaved, isPostLiked, handlePostLike,handleSavePost}) => {
     return (
         <div>
         <Modal size={"4xl"} onClose={onClose} isOpen={true} isCentered>
@@ -29,7 +29,7 @@ const ComentModel = ({onClose, isOpen}) => {
                             <div>
                                 {[1,1,1,1].map((item) => <CommentCard/>)}
                             </div>
-                            <div className='flex justify-between items-center w-full py-4 px-5'>
+                            <div className='flex justify-between items-center w-full py-4'>
                     <div className='flex items-center'>
                         <img className='h-12 w-12 rounded-full' src="" alt="" />
                         <div className='pl-2'>
