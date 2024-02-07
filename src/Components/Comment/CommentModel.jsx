@@ -1,4 +1,5 @@
 import React from 'react'
+import CommentCard from './CommentCard'
 
 const ComentModel = ({onClose, isOpen}) => {
     return (
@@ -23,6 +24,10 @@ const ComentModel = ({onClose, isOpen}) => {
                                     </div>
                             </div>
                                 <BsThreeDots/>
+                            </div>
+                            <hr />
+                            <div>
+                                {[1,1,1,1].map((item) => <CommentCard/>)}
                             </div>
                         </div>
                     </div>
