@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentCard from './CommentCard'
-import "./CommentModel.css"
+import './CommentModel.css'
+
 const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, handleSavePost }) => {
     return (
         <div>
