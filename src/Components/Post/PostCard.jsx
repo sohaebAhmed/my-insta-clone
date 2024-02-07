@@ -27,7 +27,7 @@ const PostCard = () => {
                         </div>
                     </div>
                     <div className='dropdown'>
-                        <BsThreeDots className='dots' onClick={handleClick}/>
+                        <BsThreeDots className='dots' onClick={handleClick} />
                         <div className='dropdown-content'>
                             {showDropDown && <p className='b--black text-white py-1 px-4 rounded-md cursor-pointer'>Delete</p>}
                         </div>
@@ -39,11 +39,11 @@ const PostCard = () => {
                     <div className='flex justify-between items-center w-full px-5 py-4'>
                         <div className='flex items-center space-x-2'>
                             {isPostLiked ? <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostLike} /> : <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} />}
-                            <FaRegComment className="text-xl hover:opacity-50 cursor-pointer"/>
-                            <RiSendPlaneLine className="text-xl hover:opacity-50 cursor-pointer"/>
+                            <FaRegComment className="text-xl hover:opacity-50 cursor-pointer" />
+                            <RiSendPlaneLine className="text-xl hover:opacity-50 cursor-pointer" />
                         </div>
                         <div className='cursor-pointer'>
-                            {isSaved ? <BsBookMarkFill  className="text-xl hover:opacity-50 cursor-pointer"/> : <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer"/>}
+                            {isSaved ? <BsBookMarkFill className="text-xl hover:opacity-50 cursor-pointer" /> : <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer" />}
                         </div>
                     </div>
                     <div className='w-full py-2 px-5'>
@@ -53,14 +53,14 @@ const PostCard = () => {
 
                     <div className='border border-t w-full'>
                         <div className='flex w-full items-center px-5'>
-                            <BsEmojiSmile/>
-                            <input className="commentInput" type="text" placeholder='Add a comment...'/>
+                            <BsEmojiSmile />
+                            <input className="commentInput" type="text" placeholder='Add a comment...' />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <ComentModel/>
+            <ComentModel />
         </div>
     )
 }

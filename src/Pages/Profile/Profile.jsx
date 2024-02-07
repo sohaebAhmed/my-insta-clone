@@ -6,7 +6,7 @@ const Profile = () => {
         <div>
             <div className='px-20'>
                 <div className=''>
-                    <ProfileUserDetails/>
+                    <ProfileUserDetails />
                 </div>
             </div>
             <div>

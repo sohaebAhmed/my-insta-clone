@@ -25,21 +25,21 @@ const Sidebar = () => {
                         <img className='w-40' src="https://i.imgur.com/zqpwkLQ.png" alt="" />
                     </div>
                     <div className='mt-10'>
-                        {mainu.map((item) => 
+                        {mainu.map((item) =>
                             <div onClick={() => handleTabClick(item.title)} className='flex item-center mb-5 cursor-pointer text-lg'>
                                 {activeTab === item.title ? item.activeIcon : item.icon}
                                 <p className={`${activeTab === item.title ? "font-bold" : "font-semibold"}`}>{item.title}</p>
                             </div>
-                        )} 
-                        
+                        )}
+
                     </div>
                 </div>
                 <div className='flex items-center cursor-pointer pb-10'>
-                    <IoReorderThreeOtline className="text-2xl"/>
+                    <IoReorderThreeOtline className="text-2xl" />
                     <p className='ml-5'>More</p>
                 </div>
             </div>
-            
+
         </div>
     )
 }

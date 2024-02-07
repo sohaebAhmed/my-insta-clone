@@ -3,9 +3,9 @@ import React from 'react'
 const ProfileUserDetails = () => {
     return (
         <div classname='py-10'>
-            <div className='flex items-center'>                
+            <div className='flex items-center'>
                 <div className='width-[15%]'>
-                    <img className='w-32 h-32 rounded-full' src=''/>
+                    <img className='w-32 h-32 rounded-full' src='' />
                 </div>
 
                 <div className='w-full'>

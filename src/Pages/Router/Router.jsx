@@ -7,12 +7,12 @@ const Router = () => {
         <div>
             <div className="flex">
                 <div className="w-[20%] border border-l-slate-500 pl-10">
-                    <Sidebar/>
+                    <Sidebar />
                 </div>
                 <div>
                     <Routes>
-                        <Route path = '/' element={<HomePage/>}></Route>
-                        <Route path = '/username' element={<Profile/>}></Route>
+                        <Route path='/' element={<HomePage />}></Route>
+                        <Route path='/username' element={<Profile />}></Route>
                     </Routes>
                 </div>
             </div>

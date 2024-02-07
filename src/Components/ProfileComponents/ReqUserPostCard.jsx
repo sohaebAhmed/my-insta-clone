@@ -1,7 +1,7 @@
 import React from "react"
 
 const ReqUserPostCard = () => {
-    return ( 
+    return (
         <div className="p-2">
             <div className="post w-60 h-60">
                 <img className="cursor-pointer" src="" alt="" />

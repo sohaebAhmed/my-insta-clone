@@ -8,14 +8,14 @@ const HomePage = () => {
             <div className='mt-10 flex w-[100%] justfy-center'>
                 <div className='w-[44%] px-10 '>
                     <div className='stroyDiv flex spacex-x-2 border p-4 rounded-md justify-start w-full'>
-                        {[1,1,11].map((item) => <StoryCircle/>)}
+                        {[1, 1, 11].map((item) => <StoryCircle />)}
                     </div>
                     <div className='spacey-y-10 w-full mt-10'>
-                        {[1,1].map((item) => <PostCard/>)}
+                        {[1, 1].map((item) => <PostCard />)}
                     </div>
                 </div>
                 <div className='w-[35%]'>
-                    <HomeRight/>
+                    <HomeRight />
                 </div>
             </div>
         </div>
