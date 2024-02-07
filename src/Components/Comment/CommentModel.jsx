@@ -47,7 +47,7 @@ const ComentModel = ({onClose, isOpen, isSaved, isPostLiked, handlePostLike,hand
                         <img className='w-full' src="" alt="" />
                     </div>
 
-                    <div className='flex justify-between items-center w-full px-5 py-4'>
+                    <div className='flex justify-between items-center w-full py-4'>
                         <div className='flex items-center space-x-2'>
                             {isPostLiked ? <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostLike} /> : <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} />}
                             <FaRegComment className="text-xl hover:opacity-50 cursor-pointer"/>
@@ -57,6 +57,12 @@ const ComentModel = ({onClose, isOpen, isSaved, isPostLiked, handlePostLike,hand
                             {isSaved ? <BsBookMarkFill  className="text-xl hover:opacity-50 cursor-pointer"/> : <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer"/>}
                         </div>
                     </div>
+                    
+                    <div className='w-full py-2 px-5'>
+                        <p>10 likes</p>
+                        <p className='opcity-50 py-2 cursor-pointer'>view all 10 comments</p>
+                    </div>
+
                     <div className='w-full py-2 px-5'>
                         <p>10 likes</p>
                         <p className='opcity-50 py-2 cursor-pointer'>view all 10 comments</p>
