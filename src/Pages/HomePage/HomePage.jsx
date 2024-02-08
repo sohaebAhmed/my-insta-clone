@@ -1,6 +1,7 @@
 import React from 'react'
 import StoryCircle from '../../Components/Story/StoryCircle'
 import PostCard from '../../Components/Post/PostCard'
+import CreatePostModel from '../../Components/Post/CreatePostModel'
 
 const HomePage = () => {
     return (
@@ -18,6 +19,7 @@ const HomePage = () => {
                     <HomeRight />
                 </div>
             </div>
+            <CreatePostModel/>
         </div>
     )
 }
