@@ -13,6 +13,7 @@ const Router = () => {
                     <Routes>
                         <Route path='/' element={<HomePage />}></Route>
                         <Route path='/username' element={<Profile />}></Route>
+                        <Route path="/story" element={<Story/>}></Route>
                     </Routes>
                 </div>
             </div>
