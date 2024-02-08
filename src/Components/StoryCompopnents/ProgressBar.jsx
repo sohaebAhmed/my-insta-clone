@@ -2,7 +2,7 @@ import React from 'react'
 import "./ProgressBar.css"
 import { progress } from 'framer-motion'
 
-const ProgressBar = (index, activeIndex, duration) => {
+const ProgressBar = ({index, activeIndex, duration}) => {
 
     const [progress, setProgress] = useState(0);
 
@@ -30,7 +30,7 @@ const ProgressBar = (index, activeIndex, duration) => {
     const isActive = index === activeIndex
 
     return (
-        <div>
+        <div className={`progress-bar-container ${isActive?"active" : ""}`}>
             <div className={`${isActive ? "progress-bar" : ""}`} style={{ width: `${progress}%` }}>
 
             </div>
