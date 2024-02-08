@@ -2,6 +2,7 @@ import React from "react"
 import { IoReorderThreeOtline } from "react-icons/io5"
 import { useNavigate } from "react-router-dom";
 import { mainu } from "./SidebarConfig"
+import { useDisclosure } from "@chakra-ui/react";
 const Sidebar = () => {
 
     const [activeTab, setActiveTab] = useState();
@@ -13,8 +14,12 @@ const Sidebar = () => {
             navigate("/username")
         } else if (title === "Home") {
             navigate("/")
+        } else if (title === 'Create') {
+            onOpen()
         }
     }
+
+    const {isOpen, onClose, onOpen} = useDisclosure()
 
     return (
         <div className="sticky top-0 h-[100vh]">
@@ -39,7 +44,7 @@ const Sidebar = () => {
                     <p className='ml-5'>More</p>
                 </div>
             </div>
-
+            <CreatePostModel onClose={onClose} isOpen={isOpen}/>
         </div>
     )
 }

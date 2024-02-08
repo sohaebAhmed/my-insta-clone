@@ -2,8 +2,10 @@ import React from 'react'
 import StoryCircle from '../../Components/Story/StoryCircle'
 import PostCard from '../../Components/Post/PostCard'
 import CreatePostModel from '../../Components/Post/CreatePostModel'
+import { useDisclosure } from '@chakra-ui/react'
 
 const HomePage = () => {
+    const { isOpen, onOpen, onClose} = useDisclosure()
     return (
         <div>
             <div className='mt-10 flex w-[100%] justfy-center'>
@@ -19,7 +21,7 @@ const HomePage = () => {
                     <HomeRight />
                 </div>
             </div>
-            <CreatePostModel/>
+            <CreatePostModel onClose={onClose} isOpen={isOpen}/>
         </div>
     )
 }
