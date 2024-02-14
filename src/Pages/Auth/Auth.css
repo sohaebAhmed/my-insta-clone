@@ -1,0 +1,20 @@
+.mobileWallpaper {
+    background-image: url("");
+    animation: changeBg 8s infinite;
+}
+
+@keyframes changeBg {
+    
+    0%{
+        background-image: url("");
+    } 
+    25%{
+        background-image: url("");
+    }
+    50%{
+        background-image: url("");
+    } 
+    75%{
+        background-image: url("");
+    }
+}
