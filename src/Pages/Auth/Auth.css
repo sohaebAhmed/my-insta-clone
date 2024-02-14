@@ -4,17 +4,20 @@
 }
 
 @keyframes changeBg {
-    
-    0%{
-        background-image: url("");
-    } 
-    25%{
+
+    0% {
         background-image: url("");
     }
-    50%{
+
+    25% {
         background-image: url("");
-    } 
-    75%{
+    }
+
+    50% {
+        background-image: url("");
+    }
+
+    75% {
         background-image: url("");
     }
 }

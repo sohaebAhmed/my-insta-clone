@@ -1,8 +1,11 @@
 import { Box, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import { signinAction } from '../../Redux/Auth/Action'
+import { getUserProfileAction } from '../../Redux/User/Action'
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Required"),
@@ -12,10 +15,27 @@ const validationSchema = Yup.object().shape({
 const Signin = () => {
     const initialValues = { email: "", password: "" }
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { user } = useSelector(store => store)
+    const jwt = localStorage.getItem("token")
 
-    const handleSubmit = (values) => {
-        console.log("values: ", values)
+    const handleSubmit = (values, actions) => {
+        dispatch(signinAction(values))
+        actions.setSubmitting(false)
     }
+
+    useEffect(() => {
+        if (jwt) {
+            dispatch(getUserProfileAction(jwt))
+        }
+    }, [jwt])
+
+    useEffect(() => {
+        if (user.reqUser?.username) {
+            navigate(`/${user.reqUser?.username}`)
+        }
+    }, [jwt, user.reqUser])
+
     const handleNavigate = () => navigate("/signup")
     return (
         <div>
