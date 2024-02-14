@@ -16,7 +16,7 @@ const Auth = () => {
 
                     </div>
                 </div>
-                <div className='w-[23vw]'>
+                <div className='w-[40vw] lg:w-[23vw]'>
                     {location.pathname === "/login" ? <Signin /> : <Signup />}
                 </div>
             </div>

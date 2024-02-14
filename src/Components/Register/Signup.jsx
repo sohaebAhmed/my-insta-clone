@@ -15,8 +15,8 @@ const Signup = () => {
     const initialValues = {email:"", username:"", name:"", password:""}
     const navigate = useNavigate()
     const handleNavigate = () => navigate("/login")
-    const handleSubmit = () => {
-
+    const handleSubmit = (values) => {
+        console.log("values: ", values)
     }
     return (
         <div>
