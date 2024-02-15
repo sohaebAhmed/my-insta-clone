@@ -1,0 +1,4 @@
+export const CREATE_COMENT = "CREATE_COMENT"
+export const GET_POST_COMENT = "GET_POST_COMENT"
+export const LIKE_COMENT = "LIKE_COMENT"
+export const UNLIKE_COMENT = "UNLIKE_COMENT"
