@@ -33,7 +33,7 @@ const HomePage = () => {
                         {[1, 1, 11].map((item) => <StoryCircle />)}
                     </div>
                     <div className='spacey-y-10 w-full mt-10'>
-                        {post.usersPost.length > 0 && post.usersPost.map((item) => <PostCard />)}
+                        {post.usersPost.length > 0 && post.usersPost.map((item) => <PostCard post={item}/>)}
                     </div>
                 </div>
                 <div className='w-[27%]'>
