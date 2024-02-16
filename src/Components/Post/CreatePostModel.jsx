@@ -14,6 +14,8 @@ const CreatePostModel = ({
     const [caption, setCaption] = useState("")
     const dispatch = useDispatch()
     const [imageUrl, setImageUrl] = useState("")
+    const [location, setLocation] = useState("")
+    const token = localStorage.getItem("token")
 
     const handleDrop = (event) => {
         event.preventDefault()
@@ -51,8 +53,14 @@ const CreatePostModel = ({
     }
 
     const handleCreatePost = () => {
-        data = { jwt, }
-        dispatch(createPostAction())
+        const data = {
+            jwt: token,
+            data: {
+                caption, location, image: imageUrl
+            },
+        }
+        dispatch(createPostAction(data))
+        onClose()
     }
 
     return (
@@ -102,7 +110,7 @@ const CreatePostModel = ({
                                 </div>
                                 <hr />
                                 <div className='p-2 flex justify-between items-center'>
-                                    <input className='locationInput' type="text" placeholder='location' name="location" id="" />
+                                    <input onChange={(e) => setLocation(e.target.value)} className='locationInput' type="text" placeholder='location' name="location" id="" />
                                     <Golocation />
                                 </div>
                                 <hr />
