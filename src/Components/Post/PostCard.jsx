@@ -2,11 +2,11 @@ import React from 'react'
 import ComentModel from '../Comment/CommentModel'
 import { useDisclosure } from '@chakra-ui/react'
 
-const PostCard = ({post}) => {
+const PostCard = ({ post }) => {
     const [showDropDown, setShowDropDown] = useState(false)
     const [isPostLiked, setIsPostLiked] = useState(false)
     const [isSaved, setIsSaved] = useState(false)
-    const {isOpen, onOpen, onClose} = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const handleSavePost = () => {
         setIsSaved(!isSaved)

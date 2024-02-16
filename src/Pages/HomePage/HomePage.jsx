@@ -7,16 +7,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { findUserPostAction } from '../../Redux/Post/Action'
 
 const HomePage = () => {
-    const { isOpen, onOpen, onClose} = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [userIds, setUserIds] = useState()
-    const {user, post} = useSelector((store) => store)
+    const { user, post } = useSelector((store) => store)
     const token = localStorage.getItem("token")
     const dispatch = useDispatch()
 
     useEffect(() => {
         const newIds = user.reqUser?.following?.map((user) => user.id)
         setUserIds([user.reqUser?.id, ...newIds])
-    },[user.reqUser])
+    }, [user.reqUser])
 
     useEffect(() => {
         const data = {
@@ -33,14 +33,14 @@ const HomePage = () => {
                         {[1, 1, 11].map((item) => <StoryCircle />)}
                     </div>
                     <div className='spacey-y-10 w-full mt-10'>
-                        {post.usersPost.length > 0 && post.usersPost.map((item) => <PostCard post={item}/>)}
+                        {post.usersPost.length > 0 && post.usersPost.map((item) => <PostCard post={item} />)}
                     </div>
                 </div>
                 <div className='w-[27%]'>
                     <HomeRight />
                 </div>
             </div>
-            
+
         </div>
     )
 }
