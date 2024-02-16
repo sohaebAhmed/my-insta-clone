@@ -1,14 +1,19 @@
 import { Button, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useStatStyles } from '@chakra-ui/react'
 import React from 'react'
 import "./CreatePostModal.css"
+import { useDispatch } from 'react-redux'
+import { createPostAction } from '../../Redux/Post/Action'
+import { uploadToCloundinary } from '../../Config/UploadToCloudinary'
 
 const CreatePostModel = ({
     onClose, isOpen
 }) => {
 
-    const [setIsDragOver, setIsDragOver] = useState(false)
+    const [isDragOver, setIsDragOver] = useState(false)
     const [file, setFile] = useState()
     const [caption, setCaption] = useState("")
+    const dispatch = useDispatch()
+    const [imageUrl, setImageUrl] = useState("")
 
     const handleDrop = (event) => {
         event.preventDefault()
@@ -28,11 +33,12 @@ const CreatePostModel = ({
         setIsDragOver(false)
     }
 
-    const handleOnChange = (e) => {
+    const handleOnChange = async (e) => {
         const file = e.target.files[0]
         if (file && (file.type.startsWith("image/") || file.type.startsWith("video/"))) {
+            const imgUrl = await uploadToCloundinary(file)
+            setImageUrl(imgUrls)
             setFile(file)
-
         } else {
             setFile(null);
             alert("please select an image or video")
@@ -44,6 +50,11 @@ const CreatePostModel = ({
         setCaption(e.target.value)
     }
 
+    const handleCreatePost = () => {
+        data = { jwt, }
+        dispatch(createPostAction())
+    }
+
     return (
         <div>
             <Modal size={"4xl"} onClose={onClose} isOpen={isOpen} isCenterd>
@@ -51,7 +62,7 @@ const CreatePostModel = ({
                 <ModalContent>
                     <div className='flex justify-between py-1 px-10 items-centered'>
                         <p>Create New Post</p>
-                        <Button className='' variant={"ghost"} size="sm" colorScheme={'blue'}>
+                        <Button onClick={handleCreatePost} className='' variant={"ghost"} size="sm" colorScheme={'blue'}>
                             Share
                         </Button>
                     </div>
