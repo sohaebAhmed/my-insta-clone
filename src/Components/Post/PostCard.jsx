@@ -3,6 +3,7 @@ import ComentModel from '../Comment/CommentModel'
 import { useDisclosure } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { isPostLikedByUser, isSavedPost } from '../../Config/Logics'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const PostCard = ({ post }) => {
     const [showDropDown, setShowDropDown] = useState(false)
@@ -13,6 +14,7 @@ const PostCard = ({ post }) => {
     const token = localStorage.getItem("token")
     const { user } = useSelector((store) => store)
     const data = { jwt: tokenToCSSVar, postId: post?.id }
+    const navigate = useNavigate()
 
     const handleSavePost = () => {
         setIsSaved(true)
@@ -35,6 +37,7 @@ const PostCard = ({ post }) => {
     }
 
     const handleOpenCommentModel = () => {
+        navigate(`/comment/${post.id}`)
         onOpen()
     }
 

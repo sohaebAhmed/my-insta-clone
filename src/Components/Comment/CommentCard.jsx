@@ -1,7 +1,7 @@
 import { useStatStyles } from '@chakra-ui/react'
 import React from 'react'
 
-const CommentCard = () => {
+const CommentCard = ({comment}) => {
     const [isCommentLike, setIsCommentLike] = useState()
     const handleLikeComment = () => {
         setIsCommentLike(!isCommentLike)

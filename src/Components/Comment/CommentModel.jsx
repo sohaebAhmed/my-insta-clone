@@ -1,8 +1,27 @@
 import React from 'react'
 import CommentCard from './CommentCard'
 import './CommentModel.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { findPostCommentAction } from '../../Redux/Comment/Action'
+import { findPostByIdAction } from '../../Redux/Post/Action'
 
 const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, handleSavePost }) => {
+    const [commentContent, setCommentContent] = useState("")
+    const dispatch = useDispatch()
+    const token = localStorage.getItem("token")
+    const { postId } = useParams()
+    const { comment, post } = useSelector(store => store)
+
+    useEffect(() => {
+        const data = {
+            jwt: token, postId
+        }
+        if (postId) {
+            dispatch(findPostByIdAction(data))
+        }
+    }, [comment.createdComment, postId])
+
     return (
         <div>
             <Modal size={"4xl"} onClose={onClose} isOpen={isOpen} isCentered>
@@ -28,7 +47,7 @@ const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, ha
                                 </div>
                                 <hr />
                                 <div>
-                                    {[1, 1, 1, 1].map((item) => <CommentCard />)}
+                                    {comment.postComment?.map((item) => <CommentCard />)}
                                 </div>
                                 <div className='flex justify-between items-center w-full py-4'>
                                     <div className='flex items-center'>
@@ -72,7 +91,16 @@ const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, ha
                                     <div className='border border-t w-full'>
                                         <div className='flex w-full items-center px-5'>
                                             <BsEmojiSmile />
-                                            <input className="comment" type="text" placeholder='Add a comment...' />
+                                            <input onKeyPress={(e) => {
+                                                if (e.key === "Enter") {
+                                                    const data = {
+                                                        postId, jwt: token, data: {
+                                                            content: commentContent
+                                                        }
+                                                    }
+                                                    dispatch(createCommentAction(data))
+                                                }
+                                            }} onChange={(e) => setCommentContent(e.target.value)} className="commentInputs" type="text" placeholder='Add a comment...' />
                                         </div>
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@ import React from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
 import Profile from "../Profile/Profile"
 import Auth from "../Auth/Auth";
+import HomePage from "../HomePage/HomePage";
 
 const Router = () => {
     const location = useLocation();
@@ -17,6 +18,7 @@ const Router = () => {
                             <Route path='/' element={<HomePage />}></Route>
                             <Route path='/username' element={<Profile />}></Route>
                             <Route path="/story" element={<Story />}></Route>
+                            <Route path="/comment/:postId" element={<HomePage />}></Route>
                         </Routes>
                     </div>
                 </div>
