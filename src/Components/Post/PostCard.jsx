@@ -2,6 +2,7 @@ import React from 'react'
 import ComentModel from '../Comment/CommentModel'
 import { useDisclosure } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
+import { isPostLikedByUser, isSavedPost } from '../../Config/Logics'
 
 const PostCard = ({ post }) => {
     const [showDropDown, setShowDropDown] = useState(false)
@@ -10,6 +11,7 @@ const PostCard = ({ post }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
+    const { user } = useSelector((store) => store)
     const data = { jwt: tokenToCSSVar, postId: post?.id }
 
     const handleSavePost = () => {
@@ -35,6 +37,11 @@ const PostCard = ({ post }) => {
     const handleOpenCommentModel = () => {
         onOpen()
     }
+
+    useEffect(() => {
+        setIsPostLiked(isPostLikedByUser(post, user.reqUser?.id))
+        setIsSaved(isSavedPost(user.reqUser, post.id))
+    }, [post.likedByUsers, user.reqUser])
 
     return (
         <div>
