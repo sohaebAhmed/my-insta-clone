@@ -10,7 +10,7 @@ const PostCard = ({ post }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
-    const data = {jwt:tokenToCSSVar, postId:post?.id}
+    const data = { jwt: tokenToCSSVar, postId: post?.id }
 
     const handleSavePost = () => {
         setIsSaved(true)
@@ -59,18 +59,18 @@ const PostCard = ({ post }) => {
 
                     <div className='flex justify-between items-center w-full px-5 py-4'>
                         <div className='flex items-center space-x-2'>
-                            {isPostLiked ? ( 
-                                <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostUnlike} /> 
-                                ) : ( 
-                                <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} /> 
-                                )}
+                            {isPostLiked ? (
+                                <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostUnlike} />
+                            ) : (
+                                <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} />
+                            )}
                             <FaRegComment onClick={handleOpenCommentModel} className="text-xl hover:opacity-50 cursor-pointer" />
                             <RiSendPlaneLine className="text-xl hover:opacity-50 cursor-pointer" />
                         </div>
                         <div className='cursor-pointer'>
                             {isSaved ? (
-                                <BsBookMarkFill onClick={handleUnsavePost} className="text-xl hover:opacity-50 cursor-pointer" /> 
-                            ) : ( <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer" />
+                                <BsBookMarkFill onClick={handleUnsavePost} className="text-xl hover:opacity-50 cursor-pointer" />
+                            ) : (<BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer" />
                             )}
                         </div>
                     </div>
