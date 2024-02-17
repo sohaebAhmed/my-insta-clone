@@ -1,18 +1,32 @@
 import React from 'react'
 import ComentModel from '../Comment/CommentModel'
 import { useDisclosure } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
 
 const PostCard = ({ post }) => {
     const [showDropDown, setShowDropDown] = useState(false)
     const [isPostLiked, setIsPostLiked] = useState(false)
     const [isSaved, setIsSaved] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const dispatch = useDispatch()
+    const token = localStorage.getItem("token")
+    const data = {jwt:tokenToCSSVar, postId:post?.id}
 
     const handleSavePost = () => {
-        setIsSaved(!isSaved)
+        setIsSaved(true)
+        dispatch(savePostAction(data))
+    }
+    const handleUnsavePost = () => {
+        setIsSaved(false)
+        dispatch(unsavePostAction(data))
     }
     const handlePostLike = () => {
         setIsPostLiked(!isPostLiked)
+        dispatch(likePostAction(data))
+    }
+    const handlePostUnlike = () => {
+        setIsPostLiked(false)
+        dispatch(unlikePostAction(data))
     }
     const handleClick = () => {
         setShowDropDown(!showDropDown)
@@ -45,12 +59,19 @@ const PostCard = ({ post }) => {
 
                     <div className='flex justify-between items-center w-full px-5 py-4'>
                         <div className='flex items-center space-x-2'>
-                            {isPostLiked ? <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostLike} /> : <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} />}
+                            {isPostLiked ? ( 
+                                <AiFillHeart className="text-2xl hover:opacity-50 cursor-pointer text-red-600" onClick={handlePostUnlike} /> 
+                                ) : ( 
+                                <AiOutLineHeart className="text-xl hover:opacity-50 cursor-pointer" onClick={handlePostLike} /> 
+                                )}
                             <FaRegComment onClick={handleOpenCommentModel} className="text-xl hover:opacity-50 cursor-pointer" />
                             <RiSendPlaneLine className="text-xl hover:opacity-50 cursor-pointer" />
                         </div>
                         <div className='cursor-pointer'>
-                            {isSaved ? <BsBookMarkFill className="text-xl hover:opacity-50 cursor-pointer" /> : <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer" />}
+                            {isSaved ? (
+                                <BsBookMarkFill onClick={handleUnsavePost} className="text-xl hover:opacity-50 cursor-pointer" /> 
+                            ) : ( <BsBookMark onClick={handleSavePost} className="text-xl hover:opacity-50 cursor-pointer" />
+                            )}
                         </div>
                     </div>
                     <div className='w-full py-2 px-5'>
