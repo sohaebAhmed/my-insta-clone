@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { findPostCommentAction } from '../../Redux/Comment/Action'
 import { findPostByIdAction } from '../../Redux/Post/Action'
+import { timeDifference } from '../../Config/Logics'
 
 const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, handleSavePost }) => {
     const [commentContent, setCommentContent] = useState("")
@@ -84,8 +85,8 @@ const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, ha
                                     </div>
 
                                     <div className='w-full py-2 px-5'>
-                                        {post.singlePost.likedByUsers.length > 0 && <p>{post.singlePost.likedByUsers.length} likes</p>}
-                                        <p className='opcity-50 py-2 cursor-pointer'>view all 10 comments</p>
+                                        {post.singlePost?.likedByUsers.length > 0 && <p>{post.singlePost?.likedByUsers.length} likes</p>}
+                                        <p className='opcity-50 py-2 cursor-pointer'>{timeDifference(post.singlePost?.createdAt)}</p>
                                     </div>
 
                                     <div className='border border-t w-full'>
