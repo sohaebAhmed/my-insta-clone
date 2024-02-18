@@ -4,21 +4,21 @@ import { isCommentLikedByUser, timeDifference } from '../../Config/Logics'
 import { useDispatch, useSelector } from 'react-redux'
 import { likeCommentAction, unlikeCommentAction } from '../../Redux/Comment/Action'
 
-const CommentCard = ({comment}) => {
+const CommentCard = ({ comment }) => {
     const [isCommentLike, setIsCommentLike] = useState(false)
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
-    const {user} = useSelector(store => store)
+    const { user } = useSelector(store => store)
     const data = {
-        commentId:comment.id,
-        jwt:token
+        commentId: comment.id,
+        jwt: token
     }
 
     const handleLikeComment = () => {
         setIsCommentLike(true)
         dispatch(likeCommentAction(data))
     }
-    
+
     const handleUnlikeComment = () => {
         setIsCommentLike(false)
         dispatch(unlikeCommentAction(data))
@@ -47,10 +47,10 @@ const CommentCard = ({comment}) => {
                     </div>
                 </div>
                 {isCommentLike ? (
-                        <AiFillHeart onClick={handleUnlikeComment} className='text-xs hover:opacity-50 cursor-pointer text-red-600' />
-                    ) : (
-                        <AiOutlineHeart onClick={handleLikeComment} className='text-xs hover:opacity-50 cursor-pointer text-red-600' />
-                    )}
+                    <AiFillHeart onClick={handleUnlikeComment} className='text-xs hover:opacity-50 cursor-pointer text-red-600' />
+                ) : (
+                    <AiOutlineHeart onClick={handleLikeComment} className='text-xs hover:opacity-50 cursor-pointer text-red-600' />
+                )}
             </div>
         </div>
     )
