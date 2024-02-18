@@ -51,10 +51,10 @@ const PostCard = ({ post }) => {
             <div className='border rounded-md w-full'>
                 <div className='flex justify-between items-center w-full py-4 px-5'>
                     <div className='flex items-center'>
-                        <img className='h-12 w-12 rounded-full' src="" alt="" />
+                        <img className='h-12 w-12 rounded-full' src={post.user.userImage} alt="" />
                         <div className='pl-2'>
-                            <p className='font-semibold text-sm'>username</p>
-                            <p className='font-thin text-sm'>location</p>
+                            <p className='font-semibold text-sm'>{post?.user.username}</p>
+                            <p className='font-thin text-sm'>{post.location}</p>
                         </div>
                     </div>
                     <div className='dropdown'>

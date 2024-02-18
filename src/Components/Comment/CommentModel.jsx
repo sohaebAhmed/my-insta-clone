@@ -11,7 +11,7 @@ const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, ha
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
     const { postId } = useParams()
-    const { comment, post } = useSelector(store => store)
+    const { comment, post, user } = useSelector(store => store)
 
     useEffect(() => {
         const data = {
@@ -31,16 +31,16 @@ const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, ha
                     <ModalBody>
                         <div className='flex h-[75wh]'>
                             <div className='w-[45%] flex flex-col justify-center'>
-                                <img className='max-h-full w-full' src="" alt="" />
+                                <img className='max-h-full w-full' src={post.singlePost?.image} alt="" />
                             </div>
                             <div className='w-[55%] pl-10'>
                                 <div className='flex justify-between items-center py-5'>
                                     <div className='flex items-center'>
                                         <div>
-                                            <img className='w-9 h-9 rounded-full' src="" alt="" />
+                                            <img className='w-9 h-9 rounded-full' src={user.reqUser.image} alt="" />
                                         </div>
                                         <div className='ml-2'>
-                                            <p>username</p>
+                                            <p>{user.reqUser.username}</p>
                                         </div>
                                     </div>
                                     <BsThreeDots />
@@ -84,23 +84,31 @@ const ComentModel = ({ onClose, isOpen, isSaved, isPostLiked, handlePostLike, ha
                                     </div>
 
                                     <div className='w-full py-2 px-5'>
-                                        <p>10 likes</p>
+                                        {post.singlePost.likedByUsers.length > 0 && <p>{post.singlePost.likedByUsers.length} likes</p>}
                                         <p className='opcity-50 py-2 cursor-pointer'>view all 10 comments</p>
                                     </div>
 
                                     <div className='border border-t w-full'>
                                         <div className='flex w-full items-center px-5'>
                                             <BsEmojiSmile />
-                                            <input onKeyPress={(e) => {
-                                                if (e.key === "Enter") {
-                                                    const data = {
-                                                        postId, jwt: token, data: {
-                                                            content: commentContent
+                                            <input
+                                                className="commentInputs"
+                                                type="text"
+                                                placeholder='Add a comment...'
+                                                onChange={(e) => setCommentContent(e.target.value)}
+                                                value={commentContent}
+                                                onKeyPress={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        const data = {
+                                                            postId, jwt: token, data: {
+                                                                content: commentContent
+                                                            }
                                                         }
+                                                        dispatch(createCommentAction(data))
+                                                        setCommentContent("")
                                                     }
-                                                    dispatch(createCommentAction(data))
-                                                }
-                                            }} onChange={(e) => setCommentContent(e.target.value)} className="commentInputs" type="text" placeholder='Add a comment...' />
+                                                }}
+                                            />
                                         </div>
                                     </div>
                                 </div>

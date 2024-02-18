@@ -3,6 +3,7 @@ import React from 'react'
 
 const CommentCard = ({comment}) => {
     const [isCommentLike, setIsCommentLike] = useState()
+    
     const handleLikeComment = () => {
         setIsCommentLike(!isCommentLike)
     }
@@ -11,7 +12,7 @@ const CommentCard = ({comment}) => {
             <div className='flex items-center justify-center py-5'>
                 <div className='flex items-center'>
                     <div>
-                        <img className='w-9 h-9 rounded-full' src="" alt="" />
+                        <img className='w-9 h-9 rounded-full' src={comment.userDto.userImage} alt="" />
                     </div>
                     <div>
                         <p>
