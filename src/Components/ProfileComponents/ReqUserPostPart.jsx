@@ -2,12 +2,13 @@ import React from "react"
 import ".ReqUserPostCard.css"
 import { useDispatch, useSelector } from "react-redux"
 import { reqUserPostAction } from "../../Redux/Post/Action"
-const ReqUserPostPart = () => {
+
+const ReqUserPostPart = ({ user }) => {
 
     const [activeTab, setActiveTab] = useState()
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
-    const { user, post } = useSelector(store => store)
+    const { post } = useSelector(store => store)
 
     const tabs = [
         {
@@ -32,7 +33,7 @@ const ReqUserPostPart = () => {
     useEffect(() => {
         const data = {
             jwt: token,
-            userId: user.reqUser?.id
+            userId: user?.id
         }
         dispatch(reqUserPostAction(data))
     }, [])

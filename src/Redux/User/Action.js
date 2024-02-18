@@ -107,7 +107,7 @@ export const editUserAction = (data) => async (dispatch) => {
         })
 
         const user = await res.json()
-        console.log("search user: ", user)
+        console.log("edited user: ", user)
         dispatch({ type: UPDATE_USER, payload: user })
     } catch (error) {
         console.log("catch error : ", error)

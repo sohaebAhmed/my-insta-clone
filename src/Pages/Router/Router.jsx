@@ -17,7 +17,7 @@ const Router = () => {
                     <div>
                         <Routes>
                             <Route path='/' element={<HomePage />}></Route>
-                            <Route path='/username' element={<Profile />}></Route>
+                            <Route path='/:username' element={<Profile />}></Route>
                             <Route path="/story" element={<Story />}></Route>
                             <Route path="/comment/:postId" element={<HomePage />}></Route>
                             <Route path="/account/edit" element={<EditAccountDetails />}></Route>

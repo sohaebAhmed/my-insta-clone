@@ -8,18 +8,19 @@ const Sidebar = () => {
 
     const [activeTab, setActiveTab] = useState("")
     const navigate = useNavigate()
-    const {isOpen, onClose, onOpen} = useDisclosure()
+    const { isOpen, onClose, onOpen } = useDisclosure()
     const [isSearchVisible, setIsSearchVisible] = useState(false)
+    const {user} = useSelector(store => store)
 
     const handleTabClick = (title) => {
         setActiveTab(title)
         if (title === "Profile") {
-            navigate("/username")
+            navigate(`/${user.reqUser?.username}`)
         } else if (title === "Home") {
             navigate("/")
         } else if (title === 'Create') {
             onOpen()
-        } 
+        }
         if (title === "Search") {
             setIsSearchVisible(true)
         } else setIsSearchVisible(false)
@@ -48,8 +49,8 @@ const Sidebar = () => {
                     {activeTab !== "Search" && <p className='ml-5'>More</p>}
                 </div>
             </div>
-            <CreatePostModel onClose={onClose} isOpen={isOpen}/>
-            {isSearchVisible && <SearchComponents/>}
+            <CreatePostModel onClose={onClose} isOpen={isOpen} />
+            {isSearchVisible && <SearchComponents />}
         </div>
     )
 }
