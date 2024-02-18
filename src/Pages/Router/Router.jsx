@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom"
 import Profile from "../Profile/Profile"
 import Auth from "../Auth/Auth";
 import HomePage from "../HomePage/HomePage";
+import EditAccountDetails from "../../Components/ProfileComponents/EditAccount/EditAccountDetails";
 
 const Router = () => {
     const location = useLocation();
@@ -19,6 +20,7 @@ const Router = () => {
                             <Route path='/username' element={<Profile />}></Route>
                             <Route path="/story" element={<Story />}></Route>
                             <Route path="/comment/:postId" element={<HomePage />}></Route>
+                            <Route path="/account/edit" element={<EditAccountDetails />}></Route>
                         </Routes>
                     </div>
                 </div>

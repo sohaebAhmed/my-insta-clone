@@ -1,7 +1,14 @@
 import React from "react"
 import ".ReqUserPostCard.css"
+import { useDispatch, useSelector } from "react-redux"
+import { reqUserPostAction } from "../../Redux/Post/Action"
 const ReqUserPostPart = () => {
+
     const [activeTab, setActiveTab] = useState()
+    const dispatch = useDispatch()
+    const token = localStorage.getItem("token")
+    const { user, post } = useSelector(store => store)
+
     const tabs = [
         {
             tab: "Post",
@@ -21,6 +28,15 @@ const ReqUserPostPart = () => {
             icon: <AiOutlineUser></AiOutlineUser>
         }
     ]
+
+    useEffect(() => {
+        const data = {
+            jwt: token,
+            userId: user.reqUser?.id
+        }
+        dispatch(reqUserPostAction(data))
+    }, [])
+
     return (
         <div>
             <div className="flex space-x-14 border-t relative">
