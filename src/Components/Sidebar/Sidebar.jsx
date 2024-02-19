@@ -10,7 +10,7 @@ const Sidebar = () => {
     const navigate = useNavigate()
     const { isOpen, onClose, onOpen } = useDisclosure()
     const [isSearchVisible, setIsSearchVisible] = useState(false)
-    const {user} = useSelector(store => store)
+    const { user } = useSelector(store => store)
 
     const handleTabClick = (title) => {
         setActiveTab(title)

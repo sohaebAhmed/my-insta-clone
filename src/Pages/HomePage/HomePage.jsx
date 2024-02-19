@@ -15,7 +15,11 @@ const HomePage = () => {
 
     useEffect(() => {
         const newIds = user.reqUser?.following?.map((user) => user.id)
-        setUserIds([user.reqUser?.id, ...newIds])
+        if (newIds?.length > 0) {
+            setUserIds([user.reqUser?.id, ...newIds])
+        } else {
+            setUserIds([user.reqUser?.id])
+        }
     }, [user.reqUser])
 
     useEffect(() => {
@@ -24,6 +28,7 @@ const HomePage = () => {
             userIds: [userIds].join(",")
         }
         dispatch(findUserPostAction(data))
+
     }, [userIds, post.createdPost, post.deletedPost])
     return (
         <div>

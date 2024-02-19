@@ -31,12 +31,14 @@ const ReqUserPostPart = ({ user }) => {
     ]
 
     useEffect(() => {
-        const data = {
-            jwt: token,
-            userId: user?.id
+        if (user) {
+            const data = {
+                jwt: token,
+                userId: user?.id
+            }
+            dispatch(reqUserPostAction(data))
         }
-        dispatch(reqUserPostAction(data))
-    }, [])
+    }, [user, post.createdPost])
 
     return (
         <div>
@@ -50,7 +52,7 @@ const ReqUserPostPart = ({ user }) => {
             </div>
             <div>
                 <div className="flex flex-wrap">
-                    {[1, 1, 1,].map((item) => <ReqUserPostCard />)}
+                    {activeTab === "Post" && !post.profilePost?.message ? post?.profilePost?.map((item) => <ReqUserPostCard post={item} />) : user?.savedPost.map((item) => <ReqUserPostCard post={item} />)}
                 </div>
             </div>
         </div>

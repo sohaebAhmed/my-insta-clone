@@ -26,10 +26,10 @@ const Profile = () => {
     return (
         <div className='px-20'>
             <div className=''>
-                <ProfileUserDetails user = {isRequser?user.reqUser:user.findByUsername} isFollowing={isFollowed} isRequesr={isRequesr} />
+                <ProfileUserDetails user={isRequser ? user.reqUser : user.findByUsername} isFollowing={isFollowed} isRequesr={isRequesr} />
             </div>
             <div>
-                <RequestUderPostPart user = {isRequser?user.reqUser:user.findByUsername} />
+                <RequestUderPostPart user={isRequser ? user.reqUser : user.findByUsername} />
             </div>
         </div>
     )

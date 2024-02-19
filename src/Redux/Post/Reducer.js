@@ -10,6 +10,7 @@ const initialValue = {
     unsavePost: null,
     unsavePost: null,
     singlePost: null,
+    profilePost: null
 }
 
 export const PostReducer = (store = initialValue, { type, payload }) => {

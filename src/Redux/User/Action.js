@@ -113,3 +113,22 @@ export const editUserAction = (data) => async (dispatch) => {
         console.log("catch error : ", error)
     }
 }
+
+
+export const getPopularUser = (jwt) => async (dispatch) => {
+    try {
+        const res = await fetch(`${BASE_API}/users/popular`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + jwt
+            },
+        })
+
+        const user = await res.json()
+        console.log("edited user: ", user)
+        dispatch({ type: POPULAR_USER, payload: user })
+    } catch (error) {
+        console.log("catch error : ", error)
+    }
+}

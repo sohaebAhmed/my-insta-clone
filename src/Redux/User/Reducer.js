@@ -24,6 +24,8 @@ export const UserReducer = (store = initialValue, { type, payload }) => {
         return { ...store, searchUser: payload }
     } else if (type === UPDATE_USER) {
         return { ...store, updatedUser: payload }
+    } else if (type === POPULAR_USER) {
+        return { ...store, popularUsers: payload }
     }
 
     return store
