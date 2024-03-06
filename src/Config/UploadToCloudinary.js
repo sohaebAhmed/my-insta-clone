@@ -1,4 +1,3 @@
-
 export const uploadToCloundinary = async (image) => {
     if (image) {
         const data = new FormData()
@@ -12,7 +11,6 @@ export const uploadToCloundinary = async (image) => {
         })
 
         const fileData = await res.json()
-
         return fileData.url.toString()
     }
 }
