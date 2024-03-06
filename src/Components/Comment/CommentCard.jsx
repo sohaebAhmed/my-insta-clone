@@ -1,59 +1,78 @@
-import { useStatStyles } from '@chakra-ui/react'
-import React from 'react'
-import { isCommentLikedByUser, timeDifference } from '../../Config/Logics'
-import { useDispatch, useSelector } from 'react-redux'
-import { likeCommentAction, unlikeCommentAction } from '../../Redux/Comment/Action'
+import React, { useEffect, useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { isCommentLikedByUser, timeDifference } from "../../Config/Logic";
+import { likeComment } from "../../Redux/Comment/Action";
 
 const CommentCard = ({ comment }) => {
-    const [isCommentLike, setIsCommentLike] = useState(false)
-    const dispatch = useDispatch()
-    const token = localStorage.getItem("token")
-    const { user } = useSelector(store => store)
-    const data = {
-        commentId: comment.id,
-        jwt: token
-    }
+    const [isCommentLiked, setIsCommentLike] = useState(false);
+    const { user } = useSelector((store) => store);
+    const [commentLikes, setCommentLikes] = useState(0);
+    const dispatch = useDispatch();
+    const jwt = localStorage.getItem("token");
+
 
     const handleLikeComment = () => {
-        setIsCommentLike(true)
-        dispatch(likeCommentAction(data))
-    }
+        dispatch(likeComment({ jwt, commentId: comment.id }));
+        setIsCommentLike(true);
+        setCommentLikes(commentLikes + 1);
+    };
 
-    const handleUnlikeComment = () => {
-        setIsCommentLike(false)
-        dispatch(unlikeCommentAction(data))
-    }
+    const handleUnLikeComment = () => {
+        dispatch(likeComment({ jwt, commentId: comment.id }));
+        setIsCommentLike(false);
+        setCommentLikes(commentLikes - 1);
+    };
 
     useEffect(() => {
-        setIsCommentLike(isCommentLikedByUser(comment, user.reqUser.id))
-    }, [user.reqUser, comment])
+        setCommentLikes(comment?.likedByUsers?.length);
+    }, [comment]);
+
+    useEffect(() => {
+        setIsCommentLike(isCommentLikedByUser(comment, user.reqUser?.id));
+    }, [comment, user.reqUser]);
+
 
     return (
         <div>
-            <div className='flex items-center justify-center py-5'>
-                <div className='flex items-center'>
-                    <div>
-                        <img className='w-9 h-9 rounded-full' src={comment.userDto.userImage} alt="" />
+            <div className="reqUser flex justify-between items-center py-5">
+                <div className="flex items-center">
+                    <div className="">
+                        <img
+                            className="w-9 h-9 rounded-full"
+                            src={
+                                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            }
+                            alt=""
+                        />
                     </div>
-                    <div>
-                        <p>
-                            <span className='font-semibold'>username</span>
-                            <span className='ml-2'>nice post</span>
+                    <div className="ml-3">
+                        <p >
+                            <span className="font-semibold"> Love Angle</span>
+                            <span className="ml-2">{comment.content}</span>
                         </p>
-                        <div className='flex items-center space-x-3 text-xs opcaity-60 pt-2'>
+                        <div className="flex items-center space-x-3 text-xs opacity-60 pt-2">
                             <span>{timeDifference(comment?.createdAt)}</span>
-                            {comment?.likedByUsers?.length > 0 && <span>{comment?.likedByUsers?.length} likes</span>}
+                            {commentLikes > 0 && (
+                                <span>{commentLikes} like</span>
+                            )}
                         </div>
                     </div>
                 </div>
-                {isCommentLike ? (
-                    <AiFillHeart onClick={handleUnlikeComment} className='text-xs hover:opacity-50 cursor-pointer text-red-600' />
+                {isCommentLiked ? (
+                    <AiFillHeart
+                        onClick={handleUnLikeComment}
+                        className="text-xs hover:opacity-50 cursor-pointer text-red-600"
+                    />
                 ) : (
-                    <AiOutlineHeart onClick={handleLikeComment} className='text-xs hover:opacity-50 cursor-pointer text-red-600' />
+                    <AiOutlineHeart
+                        onClick={handleLikeComment}
+                        className="text-xs hover:opacity-50 cursor-pointer "
+                    />
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CommentCard
+export default CommentCard;

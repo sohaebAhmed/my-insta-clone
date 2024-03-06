@@ -1,15 +1,19 @@
-.comment {
-    max-height: 40vh;
+.comments {
+    /* overflow-y-scroll max-h-[50vh] */
+
     overflow-y: scroll;
+    max-height: 40vh;
+
 }
 
-.comment::webkit-scrollbar {
+.comments::-webkit-scrollbar {
     display: none;
+    /* Safari and Chrome */
 }
 
-.commentInputs {
+.commentInput {
+
     border: none;
     outline: none;
     padding: 5px;
-    width: 100%;
 }
