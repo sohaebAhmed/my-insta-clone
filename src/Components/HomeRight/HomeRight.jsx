@@ -40,7 +40,6 @@ const HomeRight = ({ suggestedUser }) => {
                         />
                     ))}
                 </div>
-
                 <div className="opacity-60 text-xs flex items-center flex-wrap mt-10">
                     <span>About</span>
                     <BsDot />
@@ -71,4 +70,4 @@ const HomeRight = ({ suggestedUser }) => {
     );
 };
 
-export default HomeRight
+export default HomeRight;

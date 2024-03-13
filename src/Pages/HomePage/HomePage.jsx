@@ -1,53 +1,90 @@
-import React from 'react'
-import StoryCircle from '../../Components/Story/StoryCircle'
-import PostCard from '../../Components/Post/PostCard'
-import CreatePostModel from '../../Components/Post/CreatePostModel'
-import { useDisclosure } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
-import { findUserPostAction } from '../../Redux/Post/Action'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import HomeRight from "../../Components/HomeRight/HomeRight";
+import PostCard from "../../Components/Post/PostCard/PostCard";
+import StoryCircle from "../../Components/Story/StoryCircle/StoryCircle";
+import { hasStory, suggetions, timeDifference } from "../../Config/Logic";
+import { findUserPost } from "../../Redux/Post/Action";
+import { findByUserIdsAction, getUserProfileAction } from "../../Redux/User/Action";
+import "./HomePage.css";
 
 const HomePage = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [userIds, setUserIds] = useState()
+    const dispatch = useDispatch();
+    const [userIds, setUserIds] = useState([]);
+    const token = localStorage.getItem("token");
+    const reqUser = useSelector(store => store.user.reqUser);
     const { user, post } = useSelector((store) => store)
-    const token = localStorage.getItem("token")
-    const dispatch = useDispatch()
+    const [suggestedUser, setSuggestedUser] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const newIds = user.reqUser?.following?.map((user) => user.id)
-        if (newIds?.length > 0) {
-            setUserIds([user.reqUser?.id, ...newIds])
-        } else {
-            setUserIds([user.reqUser?.id])
+        dispatch(getUserProfileAction(token));
+    }, [token])
+
+    useEffect(() => {
+
+        if (reqUser) {
+            const newIds = reqUser?.following?.map((user) => user.id);
+            setUserIds([reqUser?.id, ...newIds]);
+            setSuggestedUser(suggetions(reqUser))
         }
-    }, [user.reqUser])
+    }, [reqUser])
 
     useEffect(() => {
         const data = {
-            jwt: token,
-            userIds: [userIds].join(",")
+            userIds: [userIds].join(","),
+            jwt: token
         }
-        dispatch(findUserPostAction(data))
+
+        if (userIds.length > 0) {
+            dispatch(findUserPost(data))
+            dispatch(findByUserIdsAction(data))
+        }
 
     }, [userIds, post.createdPost, post.deletedPost])
+
+    const storyUsers = hasStory(user.userByIds)
+
     return (
-        <div>
-            <div className='mt-10 flex w-[100%] justfy-center'>
-                <div className='w-[44%] px-10 '>
-                    <div className='stroyDiv flex spacex-x-2 border p-4 rounded-md justify-start w-full'>
-                        {[1, 1, 11].map((item) => <StoryCircle />)}
+        <div className=" ">
+            <div className="mt-10 flex w-[100%] justify-center">
+                <div className="flex flex-col w-[44%] px-10 items-center">
+                    <div className="flex  space-x-2 border p-4 rounded-md justify-start w-full">
+                        {storyUsers.map((item, index) => <StoryCircle
+
+                            key={index}
+
+                            image={
+                                item?.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            }
+                            username={item?.username}
+                            userId={item?.id}
+                        />)}
                     </div>
-                    <div className='spacey-y-10 w-full mt-10'>
-                        {post.usersPost.length > 0 && post.usersPost.map((item) => <PostCard post={item} />)}
+                    <div className="space-y-10 postsBox w-full">
+                        {post.userPost?.length > 0 && post?.userPost?.map((item) => (
+                            <PostCard
+                                userProfileImage={
+                                    item.user.userImage ? item.user.userImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                                }
+                                username={item?.user?.username}
+                                location={item?.location}
+                                postImage={item?.image}
+
+                                createdAt={timeDifference(item?.createdAt)}
+                                postId={item?.id}
+                                post={item}
+                            />
+                        ))}
                     </div>
                 </div>
-                <div className='w-[27%]'>
-                    <HomeRight />
+                <div className="w-[30%] pr-10">
+                    <HomeRight suggestedUser={suggestedUser} />
                 </div>
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default HomePage
+export default HomePage;

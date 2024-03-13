@@ -39,6 +39,7 @@ const EditProfileForm = () => {
         private: false,
 
     });
+
     useEffect(() => {
         dispatch(getUserProfileAction(token));
     }, [token]);
@@ -86,12 +87,8 @@ const EditProfileForm = () => {
         };
         dispatch(editUserDetailsAction(data))
 
-        // dispatch(getUserProfileAction(token))
-
         onClose();
     }
-
-    // console.log("initial value ---- ", initialValues);
 
     return (
         <div className="border rounded-md p-10">
@@ -243,4 +240,4 @@ const EditProfileForm = () => {
     );
 };
 
-export default EditProfileForm
+export default EditProfileForm;

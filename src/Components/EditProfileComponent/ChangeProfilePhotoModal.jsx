@@ -43,4 +43,4 @@ function ChangeProfilePhotoModal({ isOpen, onOpen, onClose, handleProfileImageCh
     );
 }
 
-export default ChangeProfilePhotoModal
+export default ChangeProfilePhotoModal;
