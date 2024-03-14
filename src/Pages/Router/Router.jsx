@@ -1,39 +1,45 @@
-import React from "react"
-import { Route, Routes, useLocation } from "react-router-dom"
-import Profile from "../Profile/Profile"
-import Auth from "../Auth/Auth";
-import HomePage from "../HomePage/HomePage";
-import EditAccountDetails from "../../Components/ProfileComponents/EditAccount/EditAccountDetails";
+import React from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-const Router = () => {
+import StoryPage from "../../Components/Demo/Demo";
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import Auth from "../Auth/Auth";
+import EditProfilePage from "../EditProfile/EditProfilePage";
+import HomePage from "../HomePage/HomePage";
+import Profile from "../Profile/Profile";
+import Story from "../Story/Story";
+
+const Routers = () => {
     const location = useLocation();
     return (
         <div>
-            {(location.pathname !== "/login" && location.pathname !== "signup") && (
+
+            {(location.pathname !== "/login" && location.pathname !== "/signup") && (
                 <div className="flex">
-                    <div className="w-[20%] border border-l-slate-500 pl-10">
+                    <div className="sidebarBox border border-l-slate-500 w-[20%]">
                         <Sidebar />
                     </div>
-                    <div>
+                    <div className="w-[80%]">
                         <Routes>
-                            <Route path='/' element={<HomePage />}></Route>
-                            <Route path='/:username' element={<Profile />}></Route>
-                            <Route path="/story" element={<Story />}></Route>
-                            <Route path="/comment/:postId" element={<HomePage />}></Route>
-                            <Route path="/account/edit" element={<EditAccountDetails />}></Route>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/p/:postId" element={<HomePage />} />
+                            <Route path="/:username" element={<Profile />} />
+                            <Route path="/demo" element={<StoryPage />} />
+                            <Route path="/story/:userId" element={<Story />} />
+                            <Route path="/account/edit" element={<EditProfilePage />} />
                         </Routes>
                     </div>
                 </div>
-            )} {(location.pathname === "/login" || location.pathname === "signup") && (
-                <div>
-                    <Routes>
-                        <Route path='/signup' element={<Auth />}></Route>
-                        <Route path="/login" element={<Auth />}></Route>
-                    </Routes>
-                </div>
+            )}
+            {(location.pathname === "/login" || location.pathname === "/signup") && (
+                <Routes>
+                    <Route path="/login" element={<Auth />} />
+                    <Route path="/signup" element={<Auth />} />
+                </Routes>
             )}
         </div>
-    )
-}
 
-export default Router
+    );
+};
+
+export default Routers
