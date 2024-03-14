@@ -1,15 +1,20 @@
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
+import thunk from "redux-thunk";
 import { AuthReducer } from "../Auth/Reducer";
-import { thunk } from "redux-thunk";
-import { UserReducer } from "../User/Reducer";
-import { PostReducer } from "../Post/Reducer";
-import { CommentReducer } from "../Comment/Reducer";
+import { commentReducer } from "../Comment/Reducer";
+import { postReducer } from "../Post/Reducer";
+import { StoryReducer } from "../Story/Reducer";
+import { userReducer } from "../User/Reducer";
+
 
 const rootReducers = combineReducers({
-    auth: AuthReducer,
-    user: UserReducer,
-    post: PostReducer,
-    comment: CommentReducer
-})
+
+    post: postReducer,
+    comments: commentReducer,
+    user: userReducer,
+    story: StoryReducer,
+    auth: AuthReducer
+
+});
 
 export const store = legacy_createStore(rootReducers, applyMiddleware(thunk))

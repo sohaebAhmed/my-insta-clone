@@ -1,31 +1,29 @@
-import { FOLLOW_USER, GET_USERS_BY_USER_IDS, GET_USER_BY_USERNAME, REQ_USER, SEARCH_USER, UNFOLLOW_USER, UPDATE_USER } from "./ActionType"
+import { GET_USERS_BY_USER_IDS, GET_USER_BY_USERNAME, GET_USER_PROFILE, SEARCH_USER, UPDATE_USER } from "./ActionType"
 
-const initialValue = {
+const initialState = {
     reqUser: null,
     findByUsername: null,
-    findUserByIds: [],
-    followUser: null,
-    unfollowUser: null,
-    searchUser: null,
-    updatedUser: null
+    searchResult: [],
+    updatedUser: null,
+    userByIds: [],
+
 }
-export const UserReducer = (store = initialValue, { type, payload }) => {
-    if (type === REQ_USER) {
+
+export const userReducer = (store = initialState, { type, payload }) => {
+    if (type === GET_USER_PROFILE) {
         return { ...store, reqUser: payload }
-    } else if (type === GET_USER_BY_USERNAME) {
+    }
+    else if (type === GET_USER_BY_USERNAME) {
         return { ...store, findByUsername: payload }
-    } else if (type === GET_USERS_BY_USER_IDS) {
-        return { ...store, findUserByIds: payload }
-    } else if (type === FOLLOW_USER) {
-        return { ...store, followUser: payload }
-    } else if (type === UNFOLLOW_USER) {
-        return { ...store, unfollowUser: payload }
-    } else if (type === SEARCH_USER) {
-        return { ...store, searchUser: payload }
-    } else if (type === UPDATE_USER) {
+    }
+    else if (type === GET_USERS_BY_USER_IDS) {
+        return { ...store, userByIds: payload }
+    }
+    else if (type === SEARCH_USER) {
+        return { ...store, searchResult: payload }
+    }
+    else if (type === UPDATE_USER) {
         return { ...store, updatedUser: payload }
-    } else if (type === POPULAR_USER) {
-        return { ...store, popularUsers: payload }
     }
 
     return store
