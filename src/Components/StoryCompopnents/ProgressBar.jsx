@@ -1,8 +1,7 @@
-import React from 'react'
-import "./ProgressBar.css"
-import { progress } from 'framer-motion'
+import React from 'react';
+import "./ProgressBar.css";
 
-const ProgressBar = ({index, activeIndex, duration}) => {
+const ProgressBar = ({ index, activeIndex, duration }) => {
 
     const [progress, setProgress] = useState(0);
 
@@ -30,7 +29,7 @@ const ProgressBar = ({index, activeIndex, duration}) => {
     const isActive = index === activeIndex
 
     return (
-        <div className={`progress-bar-container ${isActive?"active" : ""}`}>
+        <div className={`progress-bar-container ${isActive ? "active" : ""}`}>
             <div className={`${isActive ? "progress-bar" : ""}`} style={{ width: `${progress}%` }}>
 
             </div>
